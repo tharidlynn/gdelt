@@ -86,5 +86,5 @@ $ aws s3 cp s3://gdelt-tharid/postgresql-42.2.6.jar . && aws s3 cp s3://gdelt-th
 $ export MY_DRIVER_CLASS_PATH=postgresql-42.2.6.jar$(grep spark.driver.extraClassPath /etc/spark/conf/spark-defaults.conf | awk '{print $2}')
 
 # deploy spark with arguments <kafka host> <postgres target> <elastic target> <parquet target>
-$ spark-submit --master yarn --deploy-mode cluster --driver-class-path $MY_DRIVER_CLASS_PATH --class twitter.TwitterConsumer --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.3 --jars stanford-corenlp-3.9.1-models.jar s3://gdelt-tharid/sparkConsumer-assembly-0.1.0-SNAPSHOT.jar  kafka1:9092,kafka2:9092,kafka3:9092 postgres-database-target elasticsearch-target s3://gdelt-tharid/twitter-parquet
+$ spark-submit --master yarn --deploy-mode cluster --driver-class-path $MY_DRIVER_CLASS_PATH --class twitter.TwitterConsumer --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.3 --jars stanford-corenlp-3.9.1-models.jar,postgresql-42.2.6.jar s3://gdelt-tharid/sparkConsumer-assembly-0.1.0-SNAPSHOT.jar  kafka1:9092,kafka2:9092,kafka3:9092 postgres-database-target elasticsearch-target s3://gdelt-tharid/twitter-parquet
 ```
