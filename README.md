@@ -19,7 +19,7 @@ This is a demonstration on how to extract the public data, feed it into data pip
 
 ## Set up environments
 
-* link to setup README.md
+* [Setup](https://github.com/tharid007/gdelt/tree/master/setup)
 
 
 ## GDELT
@@ -35,16 +35,16 @@ Many organizations have been using GDELT as the complementary datasets to enchan
 
 In this project, I've downloaded both 15 minutes update "events" and "mentions" directly from [GDELT](http://data.gdeltproject.org/gdeltv2/lastupdate.txt) and also scheduled scripts to download every 15 minutes automatically before uploading to S3 data lake so that Spectrum and Athena are able to query on top of S3.
 
-You can read more information at:
+You can see the actual code and read more information at:
 
-* link to gdelt-data
+* [gdelt-data](https://github.com/tharid007/gdelt/tree/master/gdelt-data)
 
 Besides, AWS has been uploading GDELT events to [AWS S3 registry](https://registry.opendata.aws/gdelt/) everyday so that we don't have to create scraping scripts to download the historical GDELT events by ourselves. I decided to use Apache Airflow as a glue between my custom code and AWS services.
 
-You can read more information at:
+You can see the actual code and read more information at:
 
-* link to setup/gdelt part README.md
-* link to gdelt-parquet README.md
+* [gdelt-utils](https://github.com/tharid007/gdelt/tree/master/setup#gdelt-utils)
+* [gdelt-parquet](https://github.com/tharid007/gdelt/tree/master/gdelt-parquet)
 
 
 ## Yahoo finance
@@ -55,7 +55,7 @@ Back then, yahoo used to provide the Yahoo finance API for getting the market da
 
 > Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
 
-* link to yahoo
+* [yahoo](https://github.com/tharid007/gdelt/tree/master/yahoo)
 
 ## Twitter real time stream
  
@@ -63,4 +63,4 @@ Back then, yahoo used to provide the Yahoo finance API for getting the market da
 
 The [Twitter API](https://developer.twitter.com/en/docs/basics/getting-started) platform offers the way to stream realtime tweets which is nice because we can now capture the people sentiment in real time.
 
-* link to twitter
+* [twitter](https://github.com/tharid007/gdelt/tree/master/twitter)
