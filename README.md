@@ -1,7 +1,6 @@
 # GDELT, Yahoo and Twitter stream
-Capturing real-time data across the world.
 
-This is a demonstration on how to extract the public data, feed it into data pipelines, and perform ETL/ELT as shown in each section diagram.
+This is a demonstration on how to extract the public data across the world, feed it into data pipelines, and perform ETL/ELT as shown in each section diagram.
 
 ## Environments
 
@@ -28,7 +27,9 @@ This is a demonstration on how to extract the public data, feed it into data pip
 
 According to [GDELT website](https://blog.gdeltproject.org/gdelt-2-0-our-global-world-in-realtime/), GDELT dataset is one of the largest and most ambitious platforms ever created for monitoring our global world. From realtime translation of the world’s news in 65 languages, to measurement of more than 2,300 emotions and themes from every article, to a massive inventory of the media of the non-Western world.
 
-[![gdelt-video](./img/gdelt-thumbnail.png)](https://www.youtube.com/watch?v=Psp7YivWL90 "GDELT video - Click to Watch!")
+
+<a href="https://www.youtube.com/watch?v=Psp7YivWL90"><img src="./img/gdelt-thumbnail.png" alt="GDELT video - Click to Watch!" title="GDELT video - Click to Watch!" width="500" /></a>
+
 
 Many organizations have been using GDELT as the complementary datasets to enchance more new signals for their machine learning models. For example, [stock prices prediction](https://opensiuc.lib.siu.edu/theses/2178/), and [predicting community engagement](https://cloud.google.com/blog/products/gcp/predicting-community-engagement-on-reddit-using-tensorflow-gdelt-and-cloud-dataflow-part-1)
 
@@ -53,7 +54,7 @@ You can see the actual code and read more information at:
 
 Back then, yahoo used to provide the Yahoo finance API for getting the market data. Unfortunately, it has been deprecated and cannot access anymore. So, I decided to write a little script that scrapes the [Yahoo finance](https://finance.yahoo.com/) and ingests data into PostgreSQL for us.
 
-<img src="img/yahoo-screenshot.png" alt="yahoo-screenshot" title="yahoo-screenshot" style="max-width:100%;" />
+<img src="img/yahoo-screenshot.png" alt="yahoo-screenshot" title="yahoo-screenshot" width="750" />
 
 
 > Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
