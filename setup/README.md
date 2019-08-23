@@ -37,18 +37,21 @@ $ terraform apply -target module.bastion -target module.yahoo_db -auto-approve
 $ ssh -i test_key.pem -N -L 5555:spark-database.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com:5432 ubuntu@11.111.11.111
 ```
 
-<img src="../img/yahoo-rds-connect.png" style="max-width:50%;"/>
+Some SQL clients like [TablePlus](https://tableplus.com/) supports ssh tunnel out of the box
 
-
-> for more information you can read my post about bastion
+<img src="../img/yahoo-rds-connect.png" width="500" />
 
 ### Setup docker
+Docker has to:
+* Use [shell scripts](https://github.com/tharid007/gdelt/tree/master/gdelt-data) to get both GDELT events and mentions
+* Stream twitter with [JAR](https://github.com/tharid007/gdelt/tree/master/twitter)
+* Scrape [yahoo finance](https://github.com/tharid007/gdelt/tree/master/yahoo)
 
 I decided to use a plain docker installed on EC2 instance and avoided all heavy container orchestrations such as Kubernetes and ECS because of another complexity of layer on top of this side project.
 
 For all data sources, I have wrapped everything in container and push to AWS ECR. 
 
-`terraform apply -target module.docker -target module.yahoo_db -auto-approve`
+`$ terraform apply -target module.docker`
 
 ### Setup Kafka connector and create topic
 I use [Kafka Connect Amazon S3](https://docs.confluent.io/current/connect/kafka-connect-s3/index.html) to consume Twitter streaming data and push raw files back to S3.
@@ -56,7 +59,7 @@ I use [Kafka Connect Amazon S3](https://docs.confluent.io/current/connect/kafka-
 <img src="../img/twitter-s3.gif" />
 
 
-`terraform apply -target module.kafka_connect -auto-approve` installs Kafka package, move neccessary files to the instance and automatically configurates files for us. However, you still have to set up below scripts manually. 
+`$ terraform apply -target module.kafka_connect -auto-approve` installs Kafka package, move neccessary files to the instance and automatically configurates files for us. However, you still have to set up below scripts manually. 
 
 ```
 # unzip kafka-connect-s3
@@ -89,15 +92,15 @@ Get the GDELT data from [AWS S3 registry](https://registry.opendata.aws/gdelt/) 
 
 * Create tables: `redshift-scripts/create_tables.sql`
 * Copy GDELT from S3 registry and look-up data to Redshift: `redshift-scripts/copy_to_tables.sql`
-* Create Spectrum mention table to read [gdelt-data](): `redshift-scripts/create_mention_table.sql`
+* Create Spectrum mention table to read [gdelt-data](https://github.com/tharid007/gdelt/tree/master/gdelt-data): `redshift-scripts/create_mention_table.sql`
 
-> Spectrum is faster (blur data lake/data warehouse) since loading mention and event tables without Airflow.
+Without Airflow, Spectrum is faster (blur data lake/data warehouse) due to zero ETL.
 
 ### Athena scripts
 
 Querying GDELT data on top of S3 with Athena (serverless of Presto).
 
-* For the best performance, convert data to Parquet first with [Spark-parquet]()
+* For the best performance, use Spark to convert to Parquet first with [gdelt-parquet](https://github.com/tharid007/gdelt/tree/master/gdelt-parquet)
 * Create csv table: `athena-scripts/create_tables.sql`
 * Create parquet table: `athena-scripts/create_parquet_tables.sql`
 * Some example queries: `athena-scripts/sql_queries.sql`
@@ -109,7 +112,7 @@ Before converting to Parquet: (Run time: 52.6 seconds, Data scanned: 186.87 GB)
 After converting to Parquet: (Run time: 19.97 seconds, Data scanned: 3.21 GB)
 
 
-_SQL queries credit: https://github.com/juliensimon/aws/blob/master/athena/gdelt/sql_queries.txt
+_SQL queries credit: https://github.com/juliensimon/aws/blob/master/athena/gdelt/sql_queries.txt_
 
 
 ### Incremental loads with Airflow
@@ -137,15 +140,13 @@ Conn id: conn_aws_id
 Conn type: Amazon web services
 Leave the rest blank and add extra:
 {"aws_access_key_id":"xxxxxxxxxxxxx", "aws_secret_access_key": "xxxxxxxxxxxxx", "region_name": "ap-southeast-1"}
-```
-```
+
 S3 connection
 Conn id: conn_aws_s3
 Conn type: s3
 Leave the rest blank and add extra:
 {"aws_access_key_id":"xxxxxxxxxxxxx", "aws_secret_access_key": "xxxxxxxxxxxxx"}
-```
-```
+
 Redshift connection 
 Note: schema = db_name
 Conn id: conn_aws_redshift
@@ -155,8 +156,6 @@ port: 5439
 schema: gdelt 
 login: john
 password: Password123
-```
-```
 
 # read more info at: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/emr.html
 
@@ -209,9 +208,7 @@ _Note: do not forget to fill the Ec2SubnetId_
       }
    ]
 }
-```
 
-```
 Athena connection
 Conn id: conn_aws_athena
 Conn type: Amazob Web Services
@@ -221,13 +218,13 @@ Leave the rest blank and add extra:
 
 
 #### Redshift ETL
-* `dags/gdelt_redshift.py`
+* `[dags/gdelt_redshift.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_redshift.py)`
 <img src="../img/dag-gdelt-redshift.png">
 Incremental Redshift loading using Airflow scheduler daily with S3 sensor. When the new file is detected, it will automatically load to our Redshift cluster.
 
 
 #### Athena ETL
-* `dags/gdelt_emr.py`
+* `[dags/gdelt_parquet.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_parquet.py)`
 
 <img src="../img/dag-gdelt-parquet.png">
 
