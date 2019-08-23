@@ -59,6 +59,7 @@ Back then, yahoo used to provide the Yahoo finance API for getting the market da
 
 > Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
 
+You can see the actual code and read more information at:
 * [yahoo](https://github.com/tharid007/gdelt/tree/master/yahoo)
 
 ## Twitter real time stream
@@ -67,4 +68,5 @@ Back then, yahoo used to provide the Yahoo finance API for getting the market da
 
 The [Twitter API](https://developer.twitter.com/en/docs/basics/getting-started) platform offers the way to stream realtime tweets which is nice because we can now capture the people sentiment in real time.
 
+You can see the actual code and read more information at:
 * [twitter](https://github.com/tharid007/gdelt/tree/master/twitter)
