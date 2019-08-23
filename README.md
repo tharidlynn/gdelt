@@ -63,7 +63,7 @@ You can see the actual code and read more information at:
 
 ## Twitter real time stream
  
-<img src="img/twitter-diagram.png" />
+<img src="img/twitter-diagram(fix).png" />
 
 The [Twitter API](https://developer.twitter.com/en/docs/basics/getting-started) platform offers the way to stream realtime tweets which is nice because we can now capture the people sentiment in real time.
 

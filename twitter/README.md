@@ -1,6 +1,6 @@
 # Real time Twitter stream
 
-<img src="../img/twitter-diagram.png" />
+<img src="../img/twitter-diagram(fix).png" />
 
 ## Dependencies
 
