@@ -1,10 +1,8 @@
 # Scraping Yahoo finance
-
-<img src="../img/yahoo-diagram.png" />
-
 Python scripts that scrape the [yahoo finance](https://finance.yahoo.com) and save to PostgreSQL every 15 seconds.
 
-<img src="../img/yahoo-screenshot.png" alt="yahoo-screenshot" title="yahoo-screenshot" style="max-width:100%;" />
+
+<img src="../img/yahoo-diagram.png" />
 
 
 The following data will be scraped:
