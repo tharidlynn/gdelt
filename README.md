@@ -40,7 +40,7 @@ You can see the actual code and read more information at:
 
 * [gdelt-data](https://github.com/tharid007/gdelt/tree/master/gdelt-data)
 
-Besides, AWS has been uploading GDELT events to [AWS S3 registry](https://registry.opendata.aws/gdelt/) everyday so that we don't have to create scraping scripts to download the historical GDELT events by ourselves. I decided to use Apache Airflow as a glue between my custom code and AWS services.
+Besides, AWS has been uploading GDELT events to [AWS S3 registry](https://registry.opendata.aws/gdelt/) everyday. Thus, we don't have to create scraping scripts to download the historical GDELT events by ourselves. I decided to use Apache Airflow as a glue between my custom code and AWS services.
 
 You can see the actual code and read more information at:
 
