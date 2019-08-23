@@ -2,7 +2,7 @@
 <img src="../img/vpc.png" width="500" />
 
 ## Terraform
-Every resource has been wrapped as the module for easiness and management. Besides, `makefile` is used to manage state easier than manual duck typing.
+Every resource has been wrapped as the module for easiness and management. Besides, `makefile` is used to manage Terrafrom states which is easier than manual duck typing.
 
 Terraform has 3 steps:
 
