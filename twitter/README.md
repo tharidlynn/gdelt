@@ -44,24 +44,19 @@ Spark will consume the `twitter` topic and then perform sentiment analysis using
 
 ### Other Spark streaming queries
 
-* Count window sentiments in real time and stream the results to Postgres
+1. Count window sentiments in real time and stream the results to Postgres
 <img src="../img/spark-count.gif" width="400" />
 
 
-* Aggregate hashtags statistics and stream the results to Postgres
+2. Aggregate hashtags statistics and stream the results to Postgres
 <img src="../img/spark-hashtags.gif" width="700" />
 
 
-* Ingest data to elasticsearch
+3. Ingest data to elasticsearch
 <img src="../img/es-query.gif" width="700" />
 
 
-* Convert data to Parquet and upload continuously to S3
-
-> To get the best performance from your cluster, I recommend reading this [post](https://aws.amazon.com/blogs/big-data/best-practices-for-successfully-managing-memory-for-apache-spark-applications-on-amazon-emr/
-) which clearly explains how to optimize and tune proper configurations for the Spark cluster.
-
-> Do note that Spark streaming has to use the 'checkpoint' to guarantee the end-to-end fault-tolerance. In this case, I've enabled [EMRFS](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-fs.html) via Terraform as the checkpoints instead of normal HDFS or S3 for better consistency and durability.
+4. Convert data to Parquet and upload continuously to S3
 
 ### Deploying Spark 
 
@@ -88,3 +83,8 @@ $ export MY_DRIVER_CLASS_PATH=postgresql-42.2.6.jar$(grep spark.driver.extraClas
 # deploy spark with arguments <kafka host> <postgres target> <elastic target> <parquet target>
 $ spark-submit --master yarn --deploy-mode cluster --driver-class-path $MY_DRIVER_CLASS_PATH --class twitter.TwitterConsumer --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.3 --jars stanford-corenlp-3.9.1-models.jar,postgresql-42.2.6.jar s3://gdelt-tharid/sparkConsumer-assembly-0.1.0-SNAPSHOT.jar  kafka1:9092,kafka2:9092,kafka3:9092 postgres-database-target elasticsearch-target s3://gdelt-tharid/twitter-parquet
 ```
+
+> To get the best performance from your cluster, I recommend reading this [post](https://aws.amazon.com/blogs/big-data/best-practices-for-successfully-managing-memory-for-apache-spark-applications-on-amazon-emr/
+) which clearly explains how to optimize and tune proper configurations for the Spark cluster.
+
+> Do note that Spark streaming has to use the 'checkpoint' to guarantee the end-to-end fault-tolerance. In this case, I've enabled [EMRFS](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-fs.html) via Terraform as the checkpoints instead of normal HDFS or S3 for better consistency and durability.
