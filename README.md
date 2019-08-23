@@ -57,10 +57,10 @@ Back then, yahoo used to provide the Yahoo finance API for getting the market da
 <img src="img/yahoo-screenshot.png" alt="yahoo-screenshot" title="yahoo-screenshot" width="750" />
 
 
-> Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
-
 You can see the actual code and read more information at:
 * [yahoo](https://github.com/tharid007/gdelt/tree/master/yahoo)
+
+> Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
 
 ## Twitter real time stream
  
