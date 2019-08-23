@@ -1,10 +1,11 @@
 # Setup AWS
-<img src="../img/vpc.png" />
+<img src="../img/vpc.png" width="500" />
 
 ## Terraform
 Every resource has been wrapped as the module for easiness and management. Besides, `makefile` is used to manage state easier than manual duck typing.
 
-> Terraform has 3 steps
+Terraform has 3 steps:
+
 1. `terraform init`
 2. `terraform plan`
 3. `terraform apply`
@@ -37,7 +38,7 @@ $ terraform apply -target module.bastion -target module.yahoo_db -auto-approve
 $ ssh -i test_key.pem -N -L 5555:spark-database.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com:5432 ubuntu@11.111.11.111
 ```
 
-Some SQL clients like [TablePlus](https://tableplus.com/) supports ssh tunnel out of the box
+Some SQL clients like [TablePlus](https://tableplus.com/) supports ssh tunnel out of the box.
 
 <img src="../img/yahoo-rds-connect.png" width="500" />
 
@@ -59,7 +60,7 @@ I use [Kafka Connect Amazon S3](https://docs.confluent.io/current/connect/kafka-
 <img src="../img/twitter-s3.gif" />
 
 
-`$ terraform apply -target module.kafka_connect -auto-approve` installs Kafka package, move neccessary files to the instance and automatically configurates files for us. However, you still have to set up below scripts manually. 
+`$ terraform apply -target module.kafka_connect -auto-approve` installs Kafka package, moves neccessary files to the instance and automatically configurates files for us. However, you still have to set up below scripts manually. 
 
 ```
 # unzip kafka-connect-s3
