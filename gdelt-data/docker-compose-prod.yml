@@ -1,0 +1,14 @@
+version: '3'
+services:
+  event:
+    image: 111111111111.dkr.ecr.ap-southeast-1.amazonaws.com/event
+    restart: always
+    environment:
+     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  mention:
+    image: 111111111111.dkr.ecr.ap-southeast-1.amazonaws.com/mention
+    restart: always
+    environment:
+     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  event:
+    build: ./event
+    restart: always
+    environment:
+     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  mention:
+    build:
+      context: ./mention
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
