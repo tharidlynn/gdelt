@@ -218,13 +218,13 @@ Leave the rest blank and add extra:
 
 
 #### Redshift ETL
-* `[dags/gdelt_redshift.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_redshift.py)`
+* [dags/gdelt_redshift.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_redshift.py)
 <img src="../img/dag-gdelt-redshift.png">
 Incremental Redshift loading using Airflow scheduler daily with S3 sensor. When the new file is detected, it will automatically load to our Redshift cluster.
 
 
 #### Athena ETL
-* `[dags/gdelt_parquet.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_parquet.py)`
+* [dags/gdelt_parquet.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_parquet.py)
 
 <img src="../img/dag-gdelt-parquet.png">
 
