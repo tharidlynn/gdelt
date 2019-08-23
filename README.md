@@ -53,8 +53,6 @@ You can see the actual code and read more information at:
 
 Back then, yahoo used to provide the Yahoo finance API for getting the market data. Unfortunately, it has been deprecated and cannot access anymore. So, I decided to write a little script that scrapes the [Yahoo finance](https://finance.yahoo.com/) and ingests data into PostgreSQL for us.
 
-<img src="img/yahoo-screenshot.png" alt="yahoo-screenshot" title="yahoo-screenshot" style="max-width:100%;" />
-
 
 > Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
 
