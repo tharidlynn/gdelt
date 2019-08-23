@@ -45,15 +45,15 @@ Spark will consume the `twitter` topic and then perform sentiment analysis using
 ### Other Spark streaming queries
 
 * Count window sentiments in real time and stream the results to Postgres
-<img src="../img/spark-count.gif">
+<img src="../img/spark-count.gif" width="400" />
 
 
 * Aggregate hashtags statistics and stream the results to Postgres
-<img src="../img/spark-hashtags.gif">
+<img src="../img/spark-hashtags.gif" width="700" />
 
 
 * Ingest data to elasticsearch
-<img src="../img/es-query.gif">
+<img src="../img/es-query.gif" width="700" />
 
 
 * Convert data to Parquet and upload continuously to S3
