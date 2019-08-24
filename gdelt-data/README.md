@@ -1,9 +1,9 @@
 # GDELT 15 minutes update data
 Downloading latest events and mentions from GDELT and upload them to AWS S3.
 
-<img src="../img/gdelt-data.png">
+<img src="../img/gdelt-data.png" width="200" />
 
-<img src="../img/gdelt-data-2.png">
+<img src="../img/gdelt-data-2.png" width="800" />
 
 ## Getting Started
 Before executing scripts, AWS credential is needed:
