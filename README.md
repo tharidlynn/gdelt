@@ -18,7 +18,7 @@ This is a demonstration on how to extract the public data across the world, feed
 
 ## Set up environments
 
-* [Setup](https://github.com/tharid007/gdelt/tree/master/setup)
+* [Setup](https://github.com/tharidlynn/gdelt/tree/master/setup)
 
 
 ## GDELT
@@ -38,14 +38,14 @@ In this project, I've downloaded both 15 minutes update "events" and "mentions" 
 
 You can see the actual code and read more information at:
 
-* [gdelt-data](https://github.com/tharid007/gdelt/tree/master/gdelt-data)
+* [gdelt-data](https://github.com/tharidlynn/gdelt/tree/master/gdelt-data)
 
 Besides, AWS has been uploading GDELT events to [AWS S3 registry](https://registry.opendata.aws/gdelt/) everyday. Thus, we don't have to create scraping scripts to download the historical GDELT events by ourselves. I decided to use Apache Airflow as a glue between my custom code and AWS services.
 
 You can see the actual code and read more information at:
 
-* [gdelt-utils](https://github.com/tharid007/gdelt/tree/master/setup#gdelt-utils)
-* [gdelt-parquet](https://github.com/tharid007/gdelt/tree/master/gdelt-parquet)
+* [gdelt-utils](https://github.com/tharidlynn/gdelt/tree/master/setup#gdelt-utils)
+* [gdelt-parquet](https://github.com/tharidlynn/gdelt/tree/master/gdelt-parquet)
 
 
 ## Yahoo finance
@@ -57,7 +57,7 @@ Back then, yahoo used to provide the Yahoo finance API for getting the market da
 <img src="img/yahoo-screenshot.png" alt="yahoo-screenshot" title="yahoo-screenshot" width="750" />
 
 You can see the actual code and read more information at:
-* [yahoo](https://github.com/tharid007/gdelt/tree/master/yahoo)
+* [yahoo](https://github.com/tharidlynn/gdelt/tree/master/yahoo)
 
 > Read replica is not required. You can execute it with `terraform apply -target module.yahoo_db_replica` for better performance.
 
@@ -68,4 +68,4 @@ You can see the actual code and read more information at:
 The [Twitter API](https://developer.twitter.com/en/docs/basics/getting-started) platform offers the way to stream realtime tweets which is nice because we can now capture the people sentiment in real time.
 
 You can see the actual code and read more information at:
-* [twitter](https://github.com/tharid007/gdelt/tree/master/twitter)
+* [twitter](https://github.com/tharidlynn/gdelt/tree/master/twitter)
