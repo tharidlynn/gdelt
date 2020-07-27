@@ -44,7 +44,7 @@ Some SQL clients like [TablePlus](https://tableplus.com/) supports ssh tunnel ou
 
 ### Setup docker
 Docker has to:
-* Use [shell scripts](https://github.com/tharid/gdelt/tree/master/gdelt-data) to get both GDELT events and mentions
+* Use [shell scripts](https://github.com/tharidlynn/gdelt/tree/master/gdelt-data) to get both GDELT events and mentions
 * Stream twitter with [JAR](https://github.com/tharidlynn/gdelt/tree/master/twitter)
 * Scrape [yahoo finance](https://github.com/tharidlynn/gdelt/tree/master/yahoo)
 
