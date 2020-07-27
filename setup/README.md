@@ -44,9 +44,9 @@ Some SQL clients like [TablePlus](https://tableplus.com/) supports ssh tunnel ou
 
 ### Setup docker
 Docker has to:
-* Use [shell scripts](https://github.com/tharid007/gdelt/tree/master/gdelt-data) to get both GDELT events and mentions
-* Stream twitter with [JAR](https://github.com/tharid007/gdelt/tree/master/twitter)
-* Scrape [yahoo finance](https://github.com/tharid007/gdelt/tree/master/yahoo)
+* Use [shell scripts](https://github.com/tharid/gdelt/tree/master/gdelt-data) to get both GDELT events and mentions
+* Stream twitter with [JAR](https://github.com/tharidlynn/gdelt/tree/master/twitter)
+* Scrape [yahoo finance](https://github.com/tharidlynn/gdelt/tree/master/yahoo)
 
 I decided to use a plain docker installed on EC2 instance and avoided all heavy container orchestrations such as Kubernetes and ECS because of another complexity of layer on top of this side project.
 
@@ -93,7 +93,7 @@ Get the GDELT data from [AWS S3 registry](https://registry.opendata.aws/gdelt/) 
 
 * Create tables: `redshift-scripts/create_tables.sql`
 * Copy GDELT from S3 registry and look-up data to Redshift: `redshift-scripts/copy_to_tables.sql`
-* Create Spectrum mention table to read [gdelt-data](https://github.com/tharid007/gdelt/tree/master/gdelt-data): `redshift-scripts/create_mention_table.sql`
+* Create Spectrum mention table to read [gdelt-data](https://github.com/tharidlynn/gdelt/tree/master/gdelt-data): `redshift-scripts/create_mention_table.sql`
 
 Without Airflow, Spectrum is faster (blur data lake/data warehouse) due to zero ETL.
 
@@ -101,7 +101,7 @@ Without Airflow, Spectrum is faster (blur data lake/data warehouse) due to zero 
 
 Querying GDELT data on top of S3 with Athena (serverless of Presto).
 
-* For the best performance, use Spark to convert to Parquet first with [gdelt-parquet](https://github.com/tharid007/gdelt/tree/master/gdelt-parquet)
+* For the best performance, use Spark to convert to Parquet first with [gdelt-parquet](https://github.com/tharidlynn/gdelt/tree/master/gdelt-parquet)
 * Create csv table: `athena-scripts/create_tables.sql`
 * Create parquet table: `athena-scripts/create_parquet_tables.sql`
 * Some example queries: `athena-scripts/sql_queries.sql`
@@ -219,13 +219,13 @@ Leave the rest blank and add extra:
 
 
 #### Redshift ETL
-* [dags/gdelt_redshift.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_redshift.py)
+* [dags/gdelt_redshift.py](https://github.com/tharidlynn/gdelt/blob/master/setup/dags/gdelt_redshift.py)
 <img src="../img/dag-gdelt-redshift.png">
 Incremental Redshift loading using Airflow scheduler daily with S3 sensor. When the new file is detected, it will automatically load to our Redshift cluster.
 
 
 #### Athena ETL
-* [dags/gdelt_parquet.py](https://github.com/tharid007/gdelt/blob/master/setup/dags/gdelt_parquet.py)
+* [dags/gdelt_parquet.py](https://github.com/tharidlynn/gdelt/blob/master/setup/dags/gdelt_parquet.py)
 
 <img src="../img/dag-gdelt-parquet.png">
 
